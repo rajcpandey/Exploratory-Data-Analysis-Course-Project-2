@@ -73,7 +73,7 @@ You must address the following questions and tasks in your exploratory analysis.
   # Define device, set characteristics and plot
   png("plot2.png")
   
-  plot(NEI.Maryland.by.Year$year, NEI.Maryland.by.Year$Emmisions, type='l', ylab='Emissions', xlab='Year', col = NEI.Maryland.by.Year$year)
+  plot(NEI.Maryland.by.Year$year, NEI.Maryland.by.Year$Emmisions, type='l', ylab='Emissions Baltimore City', xlab='Year', col = NEI.Maryland.by.Year$year)
   
   # set the device off and back to the default screen device
   dev.off()
