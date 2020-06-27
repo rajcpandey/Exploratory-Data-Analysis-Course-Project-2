@@ -113,5 +113,5 @@ You must address the following questions and tasks in your exploratory analysis.
     # set the device off and back to the default screen device
     dev.off()
   ```
-    ![Caption](plot3.png) 
+   ![Caption](plot3.png)
 
