@@ -14,12 +14,13 @@ SCC <- readRDS("exdata_data_NEI_data/Source_Classification_Code.rds")
 # Merge the tow data frames on column SCC
 NEI.SCC <- merge(NEI, SCC, by="SCC")
 
-# Filter all rows where word Coal/coal/COAL has appeared 
-NEI.SCC.Coal <- NEI.SCC[grepl("Coal|coal|COAL", NEI.SCC$Short.Name),]
+# Filter all rows for Baltimore City and emission from vehicle 
+NEI.SCC.Moter.Baltimore <- NEI.SCC %>% filter(type == "ON-ROAD" & fips == "24510")
 
 # Aggregate data
 
-NEI.SCC.Coal.by.Year <- NEI.SCC.Coal %>% group_by(year) %>% summarise(Emmisions = sum(Emissions))
+NEI.SCC.Moter.Baltimore.by.Year <- NEI.SCC.Moter.Baltimore %>% group_by(year) %>% summarise(Emmisions = sum(Emissions))
+# ignoring the warning
 
 # ignoring the warning
 
@@ -29,7 +30,7 @@ NEI.SCC.Coal.by.Year <- NEI.SCC.Coal %>% group_by(year) %>% summarise(Emmisions 
 # Define device, set characteristics and plot
 png("plot5.png")
 
-ggplot(data = NEI.SCC.Coal.by.Year, aes(x = year, y = Emmisions)) + xlab("Year") + geom_point(col = "yellow") + ylab("Emissions") + geom_line(color = "yellow") + theme_bw() +theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ggtitle("Emissions from coal combustion-related sources accross USA")
+ggplot(data = NEI.SCC.Moter.Baltimore.by.Year, aes(x = year, y = Emmisions)) + xlab("Year") + geom_point(col = "yellow") + ylab("Emissions") + geom_line(color = "yellow") + theme_bw() +theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ggtitle("Emissions from motor vehicle sources in Baltimore City")
 
 # set the device off and back to the default screen device
 dev.off()
