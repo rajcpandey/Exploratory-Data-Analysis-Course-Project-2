@@ -1,5 +1,5 @@
 # Exploratory Data Analysis - Course Project 2 - Peer graded assignment
-# Plot2.R
+# Plot2.R 
 # Developed by - Raj Kumar Pandey
 # Date - 27/06/2020
 # ------------------------------------------------------------------------------

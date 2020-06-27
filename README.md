@@ -173,15 +173,52 @@ You must address the following questions and tasks in your exploratory analysis.
     NEI.SCC.Moter.Baltimore.by.Year <- NEI.SCC.Moter.Baltimore %>% group_by(year) %>% summarise(Emmisions = sum(Emissions))
     # ignoring the warning
     
-    # Addressing question 4 - How have emissions from motor vehicle sources changed 
+    # Addressing question 5 - How have emissions from motor vehicle sources changed 
     # from 1999–2008 in Baltimore City?
     
     # Define device, set characteristics and plot
     png("plot5.png")
     
-    ggplot(data = NEI.SCC.Moter.Baltimore.by.Year, aes(x = year, y = Emmisions)) + xlab("Year") + geom_point(col = "yellow") + ylab("Emissions") + geom_line(color = "yellow") + theme_bw() +theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ggtitle("Emissions from coal combustion-related sources accross USA")
+    ggplot(data = NEI.SCC.Moter.Baltimore.by.Year, aes(x = year, y = Emmisions)) + xlab("Year") + geom_point(col = "yellow") + ylab("Emissions") + geom_line(color = "yellow") + theme_bw() +theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ggtitle("Emissions from motor vehicle sources in Baltimore City")
     
     # set the device off and back to the default screen device
     dev.off()
   ```
   ![Caption](plot5.png)
+
+### 6. Plot6.R
+
+  ```
+    library(dplyr)
+    library(ggplot2)
+    
+    # Read the two .rds files into memory
+    
+    NEI <- readRDS("exdata_data_NEI_data/summarySCC_PM25.rds")
+    SCC <- readRDS("exdata_data_NEI_data/Source_Classification_Code.rds")
+    
+    # Merge the tow data frames on column SCC
+    NEI.SCC <- merge(NEI, SCC, by="SCC")
+    
+    # Filter all rows for Baltimore City and emission from vehicle 
+    NEI.SCC.Moter.Baltimore <- NEI.SCC %>% filter(type == "ON-ROAD" & (fips == "24510" | fips == "06037"))
+    
+    # Aggregate data
+    
+    NEI.SCC.Moter.Baltimore.by.Year <- NEI.SCC.Moter.Baltimore %>% group_by(year, fips) %>% summarise(Emmisions = sum(Emissions))
+    # ignoring the warning
+    
+    # Addressing question 6 - Compare emissions from motor vehicle sources in 
+    # Baltimore City with emissions from motor vehicle sources in Los Angeles 
+    # County, California (\color{red}{\verb|fips == "06037"|}fips == "06037"). 
+    # Which city has seen greater changes over time in motor vehicle emissions?
+    
+    # Define device, set characteristics and plot
+    png("plot6.png")
+    
+    ggplot(data = NEI.SCC.Moter.Baltimore.by.Year, aes(x = year, y = Emmisions, col = fips)) + xlab("Year") + geom_point() + ylab("Emissions") + geom_line() + theme_bw() +theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ggtitle("Comparision of emissions from motor vehicle sources in Baltimore City and Los Angeles County")
+    
+    # set the device off and back to the default screen device
+    dev.off()
+  ```
+  ![Caption](plot6.png)

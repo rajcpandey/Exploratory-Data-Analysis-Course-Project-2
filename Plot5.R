@@ -1,5 +1,5 @@
 # Exploratory Data Analysis - Course Project 2 - Peer graded assignment
-# Plot4.R
+# Plot5.R
 # Developed by - Raj Kumar Pandey
 # Date - 27/06/2020
 # ------------------------------------------------------------------------------
@@ -23,11 +23,11 @@ NEI.SCC.Coal.by.Year <- NEI.SCC.Coal %>% group_by(year) %>% summarise(Emmisions 
 
 # ignoring the warning
 
-# Addressing question 4 - Across the United States, how have emissions from coal 
-# combustion-related sources changed from 1999–2008?
+# Addressing question 5 - How have emissions from motor vehicle sources changed 
+# from 1999–2008 in Baltimore City?
 
 # Define device, set characteristics and plot
-png("plot4.png")
+png("plot5.png")
 
 ggplot(data = NEI.SCC.Coal.by.Year, aes(x = year, y = Emmisions)) + xlab("Year") + geom_point(col = "yellow") + ylab("Emissions") + geom_line(color = "yellow") + theme_bw() +theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + ggtitle("Emissions from coal combustion-related sources accross USA")
 

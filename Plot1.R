@@ -1,7 +1,7 @@
 # Exploratory Data Analysis - Course Project 2 - Peer graded assignment
 # Plot1.R
 # Developed by - Raj Kumar Pandey
-# Date - 27/06/2020
+# Date - 27/06/2020 
 # ------------------------------------------------------------------------------
 library(dplyr)
 
