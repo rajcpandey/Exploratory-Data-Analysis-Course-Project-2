@@ -246,4 +246,4 @@ You must address the following questions and tasks in your exploratory analysis.
   ```
   ![Caption](plot6.png)
   
-#### Observation - Baltimore City has seen a constant decreased in emission from mote vehicle sources from year 1999 to 2008.
+#### Observation - Baltimore City has seen a constant decreased in emission from moter vehicle sources from year 1999 to 2008.
